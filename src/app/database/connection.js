@@ -12,4 +12,21 @@ const connection = mysql.createConnection({
 
 connection.connect();
 
+/**
+ * Executa uma função sql com o sem valores
+ * @param {string} sql instrução sql a ser executada
+ * @param {string | [time , id]} valores
+ * @param {string} msgReject
+ * @returns Objeto da promise
+ */
+export const consulta = (sql, valores = "", msgReject) => {
+  return new Promise((resolve, reject) => {
+    connection.query(sql, valores, (error, result) => {
+      if (error) return reject(msgReject);
+
+      const row = JSON.parse(JSON.stringify(result));
+      return resolve(row);
+    });
+  });
+};
 export default connection;

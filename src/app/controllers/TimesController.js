@@ -13,7 +13,7 @@ class TimesController {
 
   async create(req, res) {
     const result = await TimesRepository.create(req.body);
-    res.json(result);
+    res.status(200).json({ msg: "Time criado com sucesso" });
   }
 
   async update(req, res) {

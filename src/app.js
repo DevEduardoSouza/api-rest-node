@@ -1,13 +1,10 @@
 import express from "express";
-import TimesController from "./app/controllers/TimesController.js";
+import routes from "./app/routes/routes.js";
 
 const app = express();
-app.use(express.json());
 
-app.get("/times-serie-a", TimesController.getAll);
-app.get("/times-serie-a/:id", TimesController.getById);
-app.post("/times-serie-a", TimesController.create);
-app.delete("/times-serie-a/:id", TimesController.delete);
-app.put("/times-serie-a/:id", TimesController.update);
+app.use(routes);
+
+app.use(express.json());
 
 export default app;
